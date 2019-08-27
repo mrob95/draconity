@@ -10,6 +10,7 @@ if which pacman; then
     export CMAKE_GENERATOR='MSYS Makefiles'
     export CXXFLAGS="-D__USE_MINGW_ANSI_STDIO=1"
     export CFLAGS="$CXXFLAGS"
+    #
 fi
 
 cd "$base"
@@ -20,7 +21,8 @@ if [[ ! -d "mongo-c-driver-$mongo_version" ]]; then
 fi
 cd "mongo-c-driver-$mongo_version"
 mkdir -p cmake-build; cd cmake-build
-cmake .. -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF -DCMAKE_BUILD_TYPE=Release -DENABLE_BSON=ON -DENABLE_MONGOC=OFF -DENABLE_EXAMPLES=OFF
+# cmake .. -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF -DCMAKE_BUILD_TYPE=Release -DENABLE_BSON=ON -DENABLE_MONGOC=OFF -DENABLE_EXAMPLES=OFF
+cmake .. -G "$CMAKE_GENERATOR" -DENABLE_AUTOMATIC_INIT_AND_CLEANUP=OFF -DCMAKE_BUILD_TYPE=Release -DENABLE_BSON=ON -DENABLE_MONGOC=OFF -DENABLE_EXAMPLES=OFF
 make -j4 && make install
 
 cd "$base"
@@ -34,5 +36,7 @@ cmake . -DZYDIS_BUILD_EXAMPLES=NO -DZYDIS_BUILD_TOOLS=NO
 make -j4 && make install
 
 cd "$base"
-cmake . -DCMAKE_INSTALL_PREFIX="$DESTDIR"
-make -j4
+# cmake . -DCMAKE_INSTALL_PREFIX="$DESTDIR"
+cmake . -G "$CMAKE_GENERATOR"
+# make -j4
+make -j8
