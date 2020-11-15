@@ -20,13 +20,14 @@ typedef struct {
     uint32_t var6;
     uint64_t start_time;
     uint64_t end_time;
-    uint32_t var7;
-    uint32_t var8;
+    // if DRAGON >= 15
+    uint64_t silence;
+    // endif
     uint32_t var9;
-    uint32_t var10;
+    uint32_t old_rule;
     uint32_t var11;
-    uint32_t var12;
     uint32_t rule;
+    uint32_t var12;
     uint32_t var13;
 } __attribute__((packed)) dsx_word_node;
 

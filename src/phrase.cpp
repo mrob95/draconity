@@ -55,6 +55,7 @@ static void result_to_bson(bson_t *obj, dsx_result *result) {
                 BSON_APPEND_INT32(&wdoc, "rule", node.rule);
                 BSON_APPEND_INT64(&wdoc, "start", node.start_time);
                 BSON_APPEND_INT64(&wdoc, "end", node.end_time);
+                BSON_APPEND_INT32(&wdoc, "old_rule", node.old_rule);
                 bson_append_document_end(&words, &wdoc);
             }
         }
